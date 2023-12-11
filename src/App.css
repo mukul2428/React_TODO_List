@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 7px 7px 33px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  min-height: 200px;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-wrap: break-word;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todo-list {
+  padding: 8px;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  width: 200px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+button[type="button"] {
+  padding: 10px;
+  background-color: goldenrod;
   color: white;
+  border: none;
+  width: 60px;
+  border-radius: 4px;
+  cursor: pointer;
 }
-
-.App-link {
-  color: #61dafb;
+.add-center {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#list-data {
+  margin-top: 10px;
+}
+.list {
+  padding: 10px;
+  background-color: Fuchsia;
+  color: white;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+.fa-pen {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  right: 5px;
+}
+.fa-trash {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  left: 2px;
+}
+.done {
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.edited-text {
+  background-color: Fuchsia;
+  color: white;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
 }
