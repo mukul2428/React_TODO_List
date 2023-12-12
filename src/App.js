@@ -4,22 +4,25 @@ import "./App.css";
 function App() {
   const [todo, setTodo] = useState("");
   const [items_arr, setItems_arr] = useState([]);
+  const [checker, setChecker] = useState(0);
   const [editInput_arr, setEditInput_arr] = useState([]);
 
   useEffect(() => {
-    sessionStorage.setItem("todo", JSON.stringify(items_arr));
-  }, [items_arr]);
+    const itemArr = JSON.parse(sessionStorage.getItem("todo"));
+    const editedArr = JSON.parse(sessionStorage.getItem("todoEdited"));
+    if (itemArr) {
+      setItems_arr(itemArr);
+      setEditInput_arr(editedArr);
+    }
+    setChecker(1);
+  }, []);
 
   useEffect(() => {
-    const itemArr = JSON.parse(sessionStorage.getItem("todo"));
-    setItems_arr(itemArr);
-    <TodoList
-      items_arr={items_arr}
-      setItems_arr={setItems_arr}
-      editInput_arr={editInput_arr}
-      setEditInput_arr={setEditInput_arr}
-    />;
-  }, []);
+    if (checker === 1) {
+      sessionStorage.setItem("todo", JSON.stringify(items_arr));
+      sessionStorage.setItem("todoEdited", JSON.stringify(editInput_arr));
+    }
+  }, [items_arr, checker]);
 
   return (
     <div className="container">
@@ -50,10 +53,11 @@ function App() {
   );
 
   function addToList(e) {
-    setItems_arr([...items_arr, { item: todo, edited: false }]);
-    console.log(items_arr);
-    setEditInput_arr([...editInput_arr, todo]);
-    setTodo("");
+    if (todo !== "") {
+      setItems_arr([...items_arr, { item: todo, edited: false }]);
+      setEditInput_arr([...editInput_arr, todo]);
+      setTodo("");
+    }
   }
 }
 
