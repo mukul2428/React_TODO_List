@@ -69,6 +69,7 @@ button[type="button"] {
   border-radius: 3px;
   margin-left: 4px;
   cursor: pointer;
+  margin-top: 5px;
 }
 .edited-text {
   background-color: Fuchsia;
@@ -77,4 +78,7 @@ button[type="button"] {
   border-radius: 5px;
   padding: 5px;
   margin-top: 5px;
+}
+.flex{
+  display: flex;
 }

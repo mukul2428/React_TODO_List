@@ -82,7 +82,7 @@ function TodoList({
               className="fa fa-light fa-pen"
             ></i>
             {data.edited ? (
-              <>
+              <div className="flex">
                 <input
                   value={editInput_arr[index]}
                   className="edited-text"
@@ -92,7 +92,7 @@ function TodoList({
                 <button onClick={() => itemEdited(index)} className="done">
                   Done
                 </button>
-              </>
+              </div>
             ) : (
               <></>
             )}
