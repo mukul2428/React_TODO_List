@@ -1,0 +1,77 @@
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 7px 7px 33px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  min-height: 200px;
+  min-width: 300px;
+  max-width: 300px;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-wrap: break-word;
+}
+.todo-list {
+  padding: 8px;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  width: 200px;
+}
+.addBtn {
+  padding: 10px;
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  width: 60px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.add-center {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+#list-data {
+  margin-top: 10px;
+}
+.list {
+  padding: 10px;
+  background-color: Fuchsia;
+  color: white;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+.fa-pen {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  right: 5px;
+}
+.fa-trash {
+  float: right;
+  cursor: pointer;
+  position: relative;
+  left: 2px;
+}
+.done {
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.edited-text {
+  background-color: Fuchsia;
+  color: white;
+  border: 1px solid goldenrod;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+}
+.flex {
+  display: flex;
+}
