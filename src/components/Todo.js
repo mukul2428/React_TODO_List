@@ -55,7 +55,6 @@ function Todo() {
             setItems_arr={setItems_arr}
             editInput_arr={editInput_arr}
             setEditInput_arr={setEditInput_arr}
-            // notify={notify}
           />
         </div>
       </div>
@@ -64,7 +63,10 @@ function Todo() {
 
   function addToList(e) {
     if (todo !== "") {
-      setItems_arr([...items_arr, { item: todo, edited: false }]);
+      // here (items_arr) is the previous value
+      setItems_arr((prevArr) => [...prevArr, { item: todo, edited: false }]);
+      //or
+      // setItems_arr([...items_arr, { item: todo, edited: false }]);
       setEditInput_arr([...editInput_arr, todo]);
       setTodo("");
     } else {
@@ -77,7 +79,6 @@ function TodoList({
   editInput_arr,
   setItems_arr,
   setEditInput_arr,
-  // notify,
 }) {
   return (
     <>
