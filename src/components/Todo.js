@@ -7,25 +7,13 @@ const notify = Toastr();
 function Todo() {
   const [todo, setTodo] = useState("");
   const [items_arr, setItems_arr] = useState([]);
-  const [checker, setChecker] = useState(0);
-  const [editInput_arr, setEditInput_arr] = useState([]);
 
   useEffect(() => {
     const itemArr = JSON.parse(sessionStorage.getItem("todo"));
-    const editedArr = JSON.parse(sessionStorage.getItem("todoEdited"));
     if (itemArr) {
       setItems_arr(itemArr);
-      setEditInput_arr(editedArr);
     }
-    setChecker(1);
   }, []);
-
-  useEffect(() => {
-    if (checker === 1) {
-      sessionStorage.setItem("todo", JSON.stringify(items_arr));
-      sessionStorage.setItem("todoEdited", JSON.stringify(editInput_arr));
-    }
-  }, [items_arr, checker]);
 
   return (
     <>
@@ -53,8 +41,6 @@ function Todo() {
           <TodoList
             items_arr={items_arr}
             setItems_arr={setItems_arr}
-            editInput_arr={editInput_arr}
-            setEditInput_arr={setEditInput_arr}
           />
         </div>
       </div>
@@ -63,12 +49,13 @@ function Todo() {
 
   function addToList(e) {
     if (todo !== "") {
-      // here (items_arr) is the previous value
-      setItems_arr((prevArr) => [...prevArr, { item: todo, edited: false }]);
-      //or
-      // setItems_arr([...items_arr, { item: todo, edited: false }]);
-      setEditInput_arr([...editInput_arr, todo]);
+      let updatedArr = [
+        ...items_arr,
+        { item: todo, edited: false, editedData: todo },
+      ];
+      setItems_arr(updatedArr);
       setTodo("");
+      sessionStorage.setItem("todo", JSON.stringify(updatedArr));
     } else {
       notify("Please Enter Anything !!");
     }
@@ -76,9 +63,7 @@ function Todo() {
 }
 function TodoList({
   items_arr,
-  editInput_arr,
   setItems_arr,
-  setEditInput_arr,
 }) {
   return (
     <>
@@ -97,7 +82,7 @@ function TodoList({
             {data.edited ? (
               <div className="flex">
                 <input
-                  value={editInput_arr[index]}
+                  value={data.editedData}
                   className="edited-text"
                   type="text"
                   onChange={(e) => handleChange(e, index)}
@@ -121,16 +106,17 @@ function TodoList({
     setItems_arr(updatedList);
   }
   function handleChange(e, index) {
-    let editedList = [...editInput_arr];
-    editedList[index] = e.target.value;
-    setEditInput_arr(editedList);
+    let updatedList = [...items_arr];
+    updatedList[index]["editedData"] = e.target.value;
+    setItems_arr(updatedList);
   }
   function itemEdited(index) {
-    if (editInput_arr[index]) {
+    if (items_arr[index].editedData) {
       let updatedList = [...items_arr];
-      updatedList[index].item = editInput_arr[index];
+      updatedList[index].item = updatedList[index].editedData;
       updatedList[index].edited = false;
       setItems_arr(updatedList);
+      sessionStorage.setItem("todo", JSON.stringify(updatedList));
     } else {
       notify("Please Enter Anything !!");
     }
@@ -138,8 +124,7 @@ function TodoList({
   function removeListData(index) {
     const newArr = items_arr.filter((item, ind) => ind !== index);
     setItems_arr(newArr);
-    const newInputArr = editInput_arr.filter((item, ind) => ind !== index);
-    setEditInput_arr(newInputArr);
+    sessionStorage.setItem("todo", JSON.stringify(newArr));
   }
 }
 export default Todo;
