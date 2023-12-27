@@ -1,12 +1,12 @@
 import "./App.css";
-import Todo from "./components/Todo";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Todo from "./components/Todo.tsx";
 
 function App() {
   return (
     <>
-      <Todo />
+      <Todo/>
       <ToastContainer
         position="top-center"
         autoClose={2000}
