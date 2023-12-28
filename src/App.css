@@ -5,3 +5,23 @@
   box-sizing: border-box;
   font-family: "Outfit", sans-serif;
 }
+body{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color:white;
+  color: black;
+}
+button[type="submit"]{
+  margin-bottom: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  position: relative;
+  background-color: goldenrod;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}

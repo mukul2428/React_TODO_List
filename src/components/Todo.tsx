@@ -1,6 +1,7 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState, ChangeEvent, useContext } from "react";
 import "./Todo.css";
 import Toastr from "../hooks/Toastr";
+import { ThemeContext } from "../hooks/context.ts";
 
 type TodoItem = string;
 interface Item {
@@ -13,10 +14,12 @@ interface TodoListProps {
   itemsArr: Item[];
   setItemsArr: React.Dispatch<React.SetStateAction<Item[]>>;
 }
+export type Theme = string;
 
 const notify = Toastr();
 
 function Todo({}: TodoProps) {
+  const theme = useContext(ThemeContext);
   const [todo, setTodo] = useState<TodoItem>("");
   const [itemsArr, setItemsArr] = useState<Item[]>([]);
 
@@ -25,6 +28,7 @@ function Todo({}: TodoProps) {
     if (itemArr) {
       setItemsArr(itemArr);
     }
+    console.log(theme);
   }, []);
 
   const addToList = () => {
